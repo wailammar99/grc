@@ -1,0 +1,163 @@
+<?php
+
+
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Hash;
+use App\Models\contacts as contact;
+use App\Models\contacts;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth ;
+use Illuminate\Auth\Events\Attempting ;
+
+class ContactController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function index()
+    {
+        $contact=contact::all();
+        return $contact;
+   
+    }
+  
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('contact/create');
+    }
+
+    public function listecontact()
+    {
+        $contact=contact::all();
+        
+        return view('contact',['contact'=>$contact]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $contact = new contact();
+    	$contact->nom = $request->input('nom');
+    	$contact->prenom = $request->input('prenom');
+        
+    	$contact->email = $request->input('email');
+        $contact->telephone = $request->input('telephone');
+    	$contact->client = $request->input('client');
+        $random = Str::random(8);
+        $contact->foction = $random;
+        $contact->password = Hash::make(00000000);
+    	$contact->save();
+        return redirect('/home/clients');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $contact = contact::find($id);
+        return view('contact.edit', ['contact'=>$contact]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $contact = contacts::find($id);
+    	$contact->nom = $request->input('nom');
+    	$contact->prenom = $request->input('prenom');
+        $contact->foction = $request->input('foction');
+        $contact->email = $request->input('email');
+        $contact->telephone = $request->input('telephone');
+        $contact->client = $request->input('client');
+        $contact->password = $request->input('password');
+
+    	$contact->save();
+    	return redirect('home/contact');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $contact = contact::find($id);
+    	$contact->delete();
+    	return redirect('home/contact');
+    }
+    //
+    public function login (Request $request)
+    {
+        $contact=contact::all();
+        $email=$contact->email ;
+        $password=$contact->password;
+        
+       if (auth::attempt($request->only(['email','password'])))
+       {
+        return redirect()->route('homecontact');
+       }
+       
+    
+        return redirect()->back()->withErrors('cest le email ou mot passe incorrect');
+    
+    }
+    public function handleLogin(Request $request)
+    {
+        
+        $contact=contact::all();
+        $email=$contact->email ;
+        $password=$contact->password;
+        
+       if (auth::guard("webcontact")->attempt($request->only([$contact->email,$contact->password])))
+       {
+        return redirect()->route('homecontact');
+       }
+       
+    
+        return redirect()->back()->withErrors('cest le email ou mot passe incorrect');
+    
+    }
+    public function logout ()
+    {
+        Auth::guard('webcontact')->logout();
+        return redirect()->route('loginconatct');
+    }
+  //
+}
