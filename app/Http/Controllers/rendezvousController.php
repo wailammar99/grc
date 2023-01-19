@@ -67,7 +67,8 @@ class rendezvousController extends Controller
     {
         $rendez = rendezvous::find($id);
      
-        return view('rendezvous.edit', [' rendez_vouses'=>$rendez ]);
+        return view('rendezvous.edit', ['rendez'=>$rendez ]);
+        return redirect()->back();
     }
 
     /**

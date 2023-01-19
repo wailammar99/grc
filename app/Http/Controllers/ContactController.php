@@ -3,13 +3,23 @@
 
 
 namespace App\Http\Controllers;
+
+use App\Models\clients;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\contacts as contact;
 use App\Models\contacts;
+use App\Models\Client ;
+use App\Models\opportunités ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth ;
 use Illuminate\Auth\Events\Attempting ;
+use JeroenNoten\LaravelAdminLte\View\Components\Form\Input;
+use JeroenNoten\LaravelAdminLte\View\Components\Form\InputDate;
+use PhpParser\Node\Stmt\Echo_;
+
+
 
 class ContactController extends Controller
 {
@@ -59,7 +69,7 @@ class ContactController extends Controller
         $contact->telephone = $request->input('telephone');
     	$contact->client = $request->input('client');
         $random = Str::random(8);
-        $contact->foction = $random;
+        $contact->foction =$request->input('foction');
         $contact->password = Hash::make(00000000);
     	$contact->save();
         return redirect('/home/clients');
@@ -126,8 +136,7 @@ class ContactController extends Controller
     public function login (Request $request)
     {
         $contact=contact::all();
-        $email=$contact->email ;
-        $password=$contact->password;
+      
         
        if (auth::attempt($request->only(['email','password'])))
        {
@@ -142,10 +151,9 @@ class ContactController extends Controller
     {
         
         $contact=contact::all();
-        $email=$contact->email ;
-        $password=$contact->password;
         
-       if (auth::guard("webcontact")->attempt($request->only([$contact->email,$contact->password])))
+        
+       if (auth::guard("webcontact")->attempt($request->only(['$contact->email','$contact->password'])))
        {
         return redirect()->route('homecontact');
        }
@@ -158,6 +166,41 @@ class ContactController extends Controller
     {
         Auth::guard('webcontact')->logout();
         return redirect()->route('loginconatct');
+    }
+    public function loginne (Request $request)
+    {
+  
+        $contact = contacts::find(6);
+
+
+        
+        if ($request->input('email')==$contact->email || $request->input('password')==$contact->password)
+        {
+          return   redirect()->route('info');
+        }
+        else
+        {
+       echo 'passwor or email not correct' ;
+        }
+       
+
+    }
+    public function loginneform ()
+    {
+        return view('logincontact/logincontact');
+    }
+    public function afficherinnfo ()
+    {
+        $contact=db::table('contacts')->get();
+
+        $contact=contact::find(6);
+       
+        $c=$contact->client;
+        $client = clients::find(1);
+        
+        $oppertunités =opportunités::find(2);
+        
+        return view('logincontact/contacthome',['contact'=>$contact,'clients'=>$client,'oppertunite'=>$oppertunités]);
     }
   //
 }

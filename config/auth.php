@@ -71,7 +71,7 @@ return [
          'contact'=>
          [
             'driver' => 'eloquent',
-            'model' => App\Models\logincontact::class,
+            'model' => App\Models\contacts::class,
          ]
         // 'users' => [
         //     'driver' => 'database',

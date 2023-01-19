@@ -17,7 +17,7 @@
         <div class="col-md-10 mx auto">
             <div class="card my3">
                 <div class="text-center text-uppercase">
-                    oppertunite
+                opportunités
                 </div>
                 <div class="card-body">
             <table id="mytable" class=" table table-bordered table-strippe">

@@ -19,7 +19,7 @@
                 <div class="text-center text-uppercase">
                     contact
                 </div>
-                <a href="{{url('home/contact/create')}}"> <button method= "get">ajouter</button></a>
+               
                 <div class="card-body">
             <table id="mytable" class=" table table-bordered table-strippe">
                 <thead>

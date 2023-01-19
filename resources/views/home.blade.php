@@ -80,7 +80,7 @@
 
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-20">
       
         
       <div class="small-box bg-info">

@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware('auth')->group(function ()
     {
         return view('home');
     });
+
+
 });
 
 
@@ -64,22 +66,10 @@ Route::get('/dashboard',function ()
 Route::get('home/clients','clientsController@clients');
 
 
-Route::get('home/prospect',function ()
-{
-    return view('prospect');
-});
-
-Route::get('home/opportunites',function ()
-{
-    return view('oppertunite');
-});
 Route::get('home/prospect','ProspectController@listeprospect');
 Route::get('home/contact','ContactController@listecontact');
 Route::get('home/opportunite','OppertuniteController@listeoppertunite');
-Route::get('client.show',function ()
-{
-    return view('clientshow');
-});
+
 //client 
 Route::get('home/clients/{id}/edit', 'clientsController@edit');
 Route::put('home/client/{id}', 'clientsController@update');
@@ -91,7 +81,11 @@ Route::post('client', ' clientsController@store');
 Route::delete('home/prospect/{id}', 'ProspectController@destroy');
 Route::get('home/prospect/{id}/edit', 'ProspectController@edit');
 Route::put('home/prospect/{id}', 'ProspectController@update');
-Route::get('home/prospect/{id}','ProspectController@show');
+Route::get('home/prospect/{id}', 'ProspectController@show');
+Route::get('home/prospect/create/gg', 'ProspectController@create2');
+Route::post('prospect', 'ProspectController@store');
+
+
 
 
 //contact
@@ -132,11 +126,25 @@ Route::get('home/rendezvous/create', 'rendezvousController@create');
 Route::post('home/rendezvous/create', 'rendezvousController@store');
 
 //login contact 
-Route::get('/contact',[LogincontactController::class,'showAdminLoginForm'])->name('admin.login-view');
-Route::post('/contact',[LogincontactController::class,'adminLogin'])->name('admin.login');
+//Route::get('/contact',[LoginController::class,'showcontactLoginForm'])->name('admin.login-view');
+//Route::post('/contact',[LoginController::class,'contactLogin'])->name('admin.login');
 
 
-Route::get('/contact/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home');
-Route::get('/contact/dashboard',function(){
-    return view('contact');
-})->middleware('auth:contact');
+
+//Route::get('/contact/dashboard',function(){
+  //  return view('contact');
+//});
+//Route::middleware(['auth', 'user-access:manager'])->group(function () {
+  
+  //  Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+//});
+
+Route::get('/logincontact',function ()
+{
+    return view('loginconatct01');
+});
+Route::get('/contact',[ContactController::class,'loginne'])->name('admin.login-view');
+Route::get('/contact/home',[ContactController::class,'afficherinnfo'])->name('info');
+
+
+

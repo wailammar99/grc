@@ -16,10 +16,17 @@
         <tr><td>site web</td><td><input type="text" disabled name="site" value="{{$client->site_web}}"></td></tr>
 	</table>
 
-<a href="{{url('home/contact/create?id='.$client->id)}}"> <button method= "get">ajouter un contact </button></a>
-                <div class="card-body"></br>
-                <a href="{{url('home/opportunite/create?id='.$client->id)}}"> <button method= "get">ajouter un oppertunite</button></a>
-                <a href="{{url('home/rendezvous/create?id='.$client->id)}}"> <button method= "get">ajouter un rendez vous</button></a>
+    <div class="card-body" style="display: flex;flex-direction: row;gap: 1rem;"></br>
+                <a href="{{url('home/contact/create?id='.$client->id)}}"> <button style="border-radius: 2rem;padding-inline: 1rem;padding-top: 0.5rem;padding-bottom: 0.5rem;border-width: 0.05rem;font-weight: 700;color: rgb(255, 170, 140);
+                    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;  box-shadow: 10px 10px 5px rgb(255, 170, 140);
+                " method= "get">ajouter un contact </button></a>
+            <a href="{{url('home/opportunite/create?id='.$client->id)}}"> <button  style="border-radius: 2rem;padding-inline: 1rem;padding-top: 0.5rem;padding-bottom: 0.5rem;border-width: 0.05rem;font-weight: 700;color: rgb(255, 170, 140);
+                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;  box-shadow: 10px 10px 5px rgb(255, 170, 140);
+" method= "get">ajouter un oppertunite</button></a>
+            <a href="{{url('home/rendezvous/create?id='.$client->id)}}"> <button style="border-radius: 2rem;padding-inline: 1rem;padding-top: 0.5rem;padding-bottom: 0.5rem;border-width: 0.05rem;font-weight: 700;color: rgb(255, 170, 140);
+                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;  box-shadow: 10px 10px 5px rgb(255, 170, 140);
+" method= "get">ajouter un rendez vous</button></a>
+            </div>
                 <div class="card-body">
     
                 <div class="card-body">
@@ -199,9 +206,6 @@
                        
                       <th>
                
-                            <a href="{{url('home/rendezvous/'.$r->id.'/edit')}} ">
-                            <button class="btn btn-sm btn-warning" >modifier</button>
-                            </a>
                             <form action ="{{url('home/rendezvous/'.$r->id)}}" method="post">
 				            {{csrf_field()}}
                             {{method_field('DELETE')}}

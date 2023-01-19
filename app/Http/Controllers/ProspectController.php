@@ -30,9 +30,9 @@ class ProspectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create2()
     {
-        //
+        return view('prospect.create');
     }
 
     public function listeprospect()
@@ -50,7 +50,20 @@ class ProspectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prospect = new Prospects();
+    	$prospect->nom = $request->input('nom');
+    	$prospect->prenom = $request->input('prenom');
+        
+    	$prospect->email = $request->input('email');
+        $prospect->telephone = $request->input('telephone');
+    	$prospect->adresse = $request->input('adresse');
+        
+        $prospect->site_web = $request->input('site_web');
+        $prospect->societe=$request->input('societe');
+        $prospect->foction=$request->input('foction');
+        $prospect->source=$request->input('source');
+    	$prospect->save();
+        return redirect('/home/prospect');
     }
 
     /**

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth ;
-
+use Illuminate\Foundation\Auth\contact ;
+use App\Models\contacts ;
 use illuminate\http\Request ;
 use Illuminate\Support\Str; 
 use Illuminate\Database\Eloquent\Collection ;
@@ -63,6 +64,28 @@ class LoginController extends Controller
 
         return back()->withInput($request->only('email', 'remember'));
     }
-   
+    public function showcontactLoginForm()
+    {
+        return view('loginconatct01', ['url' => route('admin.login-view'), 'title'=>'contact']);
+    }
+
+    public function contactLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        $contact=contacts::all();
+
+        if (Auth::guard('contact')->attempt($request->only(['$contact->email','$contact->password']), $request->get('remember'))){
+            return redirect('contact/dashbbord');
+        }
+
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
 }
+
+   
+
 

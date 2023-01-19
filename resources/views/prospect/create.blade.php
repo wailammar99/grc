@@ -1,5 +1,9 @@
 @extends ('adminlte::page')
-@Section('content')
+
+
+
+
+@section('content')
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,7 +26,7 @@ body{
 .container{
 background: #2d3e3f;
 width: 500px;
-height: 400px;
+height: 600px;
 padding-bottom: 20px;
 position: absolute;
 top:50%;
@@ -110,8 +114,11 @@ text-transform: uppercase;
     </style>
   </head>
   <div class="container">
-    <form action= "{{url('contact')}}" method="POST">
-        {{ csrf_field()}}
+    <form action="{{url('prospect')}}" method="POST">
+
+        <input type="hidden" name="_method" value="post">
+    
+        {{csrf_field()}}
           <div class="box">
         <label for="firstName" class="fl fontLabel"> First Name: </label>
               <div class="new iconBox">
@@ -132,13 +139,51 @@ text-transform: uppercase;
               <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
               <div class="fr">
                       <input type="text" required name="prenom"
-            placeholder="Last Name" class="textBox">
+            placeholder="Seconed Name" class="textBox">
               </div>
               <div class="clr"></div>
           </div>
           <!--Second name-->
 
+          <div class="box">
+            <label for="secondName" class="fl fontLabel"> Societe: </label>
+                  <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
+                  <div class="fr">
+                          <input type="text" required name="societe"
+                placeholder="Societe" class="textBox">
+                  </div>
+                  <div class="clr"></div>
+              </div>
 
+              <div class="box">
+                <label for="secondName" class="fl fontLabel"> Address: </label>
+                      <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
+                      <div class="fr">
+                              <input type="text" required name="adresse"
+                    placeholder="Address" class="textBox">
+                      </div>
+                      <div class="clr"></div>
+                  </div>
+
+                  <div class="box">
+                    <label for="secondName" class="fl fontLabel"> Site web: </label>
+                          <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
+                          <div class="fr">
+                                  <input type="text" required name="site_web"
+                        placeholder="Site web" class="textBox">
+                          </div>
+                          <div class="clr"></div>
+                      </div>
+
+                      <div class="box">
+                        <label for="secondName" class="fl fontLabel"> Source: </label>
+                              <div class="fl iconBox"><i class="fa fa-user" aria-hidden="true"></i></div>
+                              <div class="fr">
+                                      <input type="text" required name="source"
+                            placeholder="Source" class="textBox">
+                              </div>
+                              <div class="clr"></div>
+                          </div>
           <!---Phone No.------>
           <div class="box">
         <label for="phone" class="fl fontLabel"> Phone No.: </label>
@@ -162,10 +207,10 @@ text-transform: uppercase;
           </div>
           <!--Email ID----->
           <div class="box">
-            <label for="email" class="fl fontLabel"> Fonction :   </label>
+            <label for="email" class="fl fontLabel"> Fonction: </label>
                   <div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                   <div class="fr">
-                          <input type="text" required name="foction" placeholder="fonction " class="textBox">
+                          <input type="text" required name="foction" placeholder="Fonction" class="textBox">
                   </div>
                   <div class="clr"></div>
               </div>
@@ -173,11 +218,7 @@ text-transform: uppercase;
           <!---Password------>
         
           <!---Gender----->
-          <div class="box radio">
-        <label for="gender" class="fl fontLabel"> Gender: </label>
-                  <input type="radio" name="Gender" value="Male" required> Male &nbsp; &nbsp; &nbsp; &nbsp;
-                  <input type="radio" name="Gender" value="Female" required> Female
-          </div>
+   
           <!---Gender--->
 
 

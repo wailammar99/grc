@@ -12,7 +12,7 @@ class LogincontactController extends Controller
 
     public function showAdminLoginForm()
     {
-        return view('logincontact\logincontact', ['url' => route('admin.login-view'), 'title'=>'Admin']);
+        return view('logincontact\logincontact', ['url' => route('admin.login-view'), 'title'=>'contact']);
     }
 
     public function adminLogin(Request $request)
@@ -23,8 +23,8 @@ class LogincontactController extends Controller
         ]);
         $contact=contacts::all();
 
-        if (Auth::guard('admin')->attempt($request->only(['$contact->email','$contact->password']), $request->get('remember'))){
-            return redirect()->intended('/contact/dashboard');
+        if (Auth::guard('contact')->attempt($request->only(['$contact->email','$contact->password']), $request->get('remember'))){
+            return redirect('logincontact/contacthome');
         }
 
         return back()->withInput($request->only('email', 'remember'));

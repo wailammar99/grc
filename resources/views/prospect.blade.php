@@ -18,10 +18,14 @@
             <div class="card my3">
                 <div class="text-center text-uppercase">
                     prospects
+                 
                 </div>
                 <div class="card-body">
+                <a href="{{url('home/prospect/create/gg')}}"><button>ajouter un prospect</button></a>
+
             <table id="mytable" class=" table table-bordered table-strippe">
                 <thead>
+                    
                     <tr>
                         <th>
                            nom
@@ -30,7 +34,7 @@
                             prenom
                         </th>
                         <th>
-                            soccite 
+                            sociéte 
                         </th>
                         
                         <th>
@@ -86,7 +90,7 @@
                         <td class="d-flex jusify-content-center align-items-center flex-100 ">
                         <a href="{{url('home/prospect/'.$p->id.'/edit')}} ">
                             <button class="btn btn-sm btn-warning" >modifier</button>
-                          
+                           
                             <form action ="{{url('home/prospect/'.$p->id)}}" method="post">
 				            {{csrf_field()}}
                             {{method_field('DELETE')}}

@@ -67,9 +67,7 @@
                  
                          
             
-                          <a href="{{url('home/produits/edit')}} ">
-                            <button class="btn btn-sm btn-warning" >modifier</button>
-                            </a>
+                    
                         
                           <form action ="{{url('home/produits/'.$p->id)}}" method="post">
 				            {{csrf_field()}}
