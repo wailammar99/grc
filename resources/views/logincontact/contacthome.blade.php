@@ -123,11 +123,11 @@
 
 <tr> <th>nom</th> </th><td>{{$oppertunite->nom}}</td> <th></th> </tr>
 
-<tr> <th>montant</th> </td><td>{{oppertunite->montant}}</td> </tr>
+<tr> <th>montant</th> </td><td>{{$oppertunite->montant}}</td> </tr>
 
-<tr> <th>etape</th> <td>{{oppertunite->etape}}  </td> </tr>
+<tr> <th>etape</th> <td>{{$oppertunite->etape}}  </td> </tr>
 
-<tr> <th>date_de_cloture </th> <td>{{oppertunite->date_de_cloture}}</td></tr>
+<tr> <th>date_de_cloture </th> <td>{{$oppertunite->date_de_cloture}}</td></tr>
 
 </table>
 
