@@ -174,7 +174,7 @@ class ContactController extends Controller
 
 
         
-        if ($request->input('email')==$contact->email || $request->input('password')==$contact->password)
+        if ($request->input('email')==$contact->email && $request->input('password')==$contact->password)
         {
           return   redirect()->route('info');
         }
