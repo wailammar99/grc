@@ -121,13 +121,13 @@
 </colgroup>
 
 
-<tr> <th>nom</th> </th><td>hopital </td> <th></th> </tr>
+<tr> <th>nom</th> </th><td>{{$oppertunite->nom}}</td> <th></th> </tr>
 
-<tr> <th>montant</th> </td><td>60000</td> </tr>
+<tr> <th>montant</th> </td><td>{{oppertunite->montant}}</td> </tr>
 
-<tr> <th>etape</th> <td>verifier  </td> </tr>
+<tr> <th>etape</th> <td>{{oppertunite->etape}}  </td> </tr>
 
-<tr> <th>date_de_cloture </th> <td> 2011/02/22</td></tr>
+<tr> <th>date_de_cloture </th> <td>{{oppertunite->date_de_cloture}}</td></tr>
 
 </table>
 
